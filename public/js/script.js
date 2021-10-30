@@ -1,13 +1,4 @@
-import { getMessaging } from "firebase/messaging";
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyAZnxssa1_wu6IpVaOMSKhkW0RfJqqsgqc",
     authDomain: "raspi-syncer.firebaseapp.com",
@@ -18,42 +9,25 @@ const firebaseConfig = {
     measurementId: "G-7FVTQLSJT5"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// Set the configuration for your app
+// TODO: Replace with your project's config object
+var config = {
+    apiKey: "AIzaSyAZnxssa1_wu6IpVaOMSKhkW0RfJqqsgqc",
+    authDomain: "raspi-syncer.firebaseapp.com",
+    // For databases not in the us-central1 location, databaseURL will be of the
+    // form https://[databaseName].[region].firebasedatabase.app.
+    // For example, https://your-database-123.europe-west1.firebasedatabase.app
+    databaseURL: "https://raspi-syncer-default-rtdb.europe-west1.firebasedatabase.app/",
+    storageBucket: "bucket.appspot.com"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
 
 
-
-//---------------------------------------------------------------------------------------------
-// this is the part I don't understand:
-import { getMessaging, getToken } from "firebase/messaging";
-
-// Get registration token. Initially this makes a network call, once retrieved
-// subsequent calls to getToken will return from cache.
-const messaging = getMessaging();
-getToken(messaging, { vapidKey: 'BJcYid_iSE6SFEV_iY4cG-rsjsyL0vUsGe6yWY1WGlrnfZuQBWF67LpLLs-9L-7csFUueexfb4MU9lSRWjbaQs0' }).then((currentToken) => {
-    if (currentToken) {
-        // Send the token to your server and update the UI if necessary
-        // ...
-        console.log(currentToken)
-    } else {
-        // Show permission request UI
-        console.log('No registration token available. Request permission to generate one.');
-        // ...
-    }
-}).catch((err) => {
-    console.log('An error occurred while retrieving token. ', err);
-    // ...
-});
-
-
-//------------------------------------------------------------------------------------------------------
-
-const messaging = getMessaging();
-
-// Add the public key generated from the console here.
-messaging.getToken({ vapidKey: "BJcYid_iSE6SFEV_iY4cG-rsjsyL0vUsGe6yWY1WGlrnfZuQBWF67LpLLs-9L-7csFUueexfb4MU9lSRWjbaQs0" });
-
-function revealMessage() {
-    document.getElementById("HiddenMessage").style.display = "block";
+function playNow() {
+    firebase.database().ref('commands').set({
+        action: "start",
+        time: Date.now() + 10
+    });
 }
