@@ -25,9 +25,24 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-function playNow() {
+function play() {
     firebase.database().ref('commands').set({
         action: "start",
-        time: Date.now() + 10
+        time: Date.now().toLocaleString()
     });
 }
+
+function reset() {
+    firebase.database().ref('commands').set({
+        action: "reset",
+        time: 0
+    });
+}
+
+function close_vid() {
+    firebase.database().ref('commands').set({
+        action: "close",
+        time: Date.now()
+    });
+}
+
