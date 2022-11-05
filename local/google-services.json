@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1012288624541",
+    "project_id": "raspi-syncer",
+    "storage_bucket": "raspi-syncer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012288624541:android:68b2f885ac57b5e3c4c174",
+        "android_client_info": {
+          "package_name": "raspi.syncer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012288624541-275s08fdm7nl36rk3gd17j3r735kbj17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxhx5qnX_IDUCDFpGw9gTTt7SgEJe9z7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012288624541-275s08fdm7nl36rk3gd17j3r735kbj17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
